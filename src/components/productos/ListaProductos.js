@@ -1,5 +1,23 @@
 import imgView from '../../assets/img/overviewimg1.jpg'
+import {useEffect, useState} from "react";
 function ListaProductos() {
+
+    const [productos, setProductos] = useState([]);
+    useEffect(() => {
+        mostrarProductos()
+    }, []);
+
+    const mostrarProductos = () => {
+        let url = "http://api-felipe.test/api/productos"
+        fetch(url)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setProductos(data)
+            })
+    }
+
     return (
         <>
             <div className="cart_overview">
@@ -9,42 +27,47 @@ function ListaProductos() {
                             <table className="table">
                                 <thead>
                                 <tr className="cartoverview_title">
-                                    <th>IMAGES</th>
-                                    <th>PRODUCT</th>
-                                    <th>PRICE</th>
-                                    <th>QUANTITY</th>
-                                    <th>TOTAL</th>
+                                    <th>IMAGEN</th>
+                                    <th>PRODUCTO</th>
+                                    <th>PRECIO</th>
+                                    <th>CANTIDAD</th>
+                                    <th>CATEGORIA</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        <div className="thamnail_img">
-                                            <img className="img-fluid" src={ imgView } alt=""/>
-                                        </div>
-                                    </th>
-                                    <td className="align-middle"><b>Strawberry</b></td>
-                                    <td className="align-middle">$590</td>
 
-                                    <td className="align-middle">
-                                        <div className="cart d-flex">
-                                            <div className="quantity d-flex">
-                                                <div className="left_arrow">
-                                                    <button type="button"><i className="icofont-arrow-left"></i>
-                                                    </button>
+                                {
+                                    productos.map(producto =>
+                                        <tr>
+                                            <th scope="row">
+                                                <div className="thamnail_img">
+                                                    <img className="img-fluid" src={ producto.imagen_table } alt=""/>
                                                 </div>
-                                                <div className="quantity_num">1</div>
-                                                <div className="right_arrow">
-                                                    <button type="button"><i className="icofont-arrow-right"></i>
-                                                    </button>
+                                            </th>
+                                            <td className="align-middle"><b>{ producto.nombre }</b></td>
+                                            <td className="align-middle">S/{ producto.precio }</td>
+
+                                            <td className="align-middle">
+                                                <div className="cart d-flex">
+                                                    <div className="quantity d-flex">
+                                                        <div className="left_arrow">
+                                                            <button type="button"><i className="icofont-arrow-left"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div className="quantity_num">{ producto.cantidad }</div>
+                                                        <div className="right_arrow">
+                                                            <button type="button"><i className="icofont-arrow-right"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="align-middle">$5980</td>
-                                    <td className="align-middle"><i className="icofont-close text-danger"></i></td>
-                                </tr>
+                                            </td>
+                                            <td className="align-middle">{ producto.categoria.descripcion }</td>
+                                            <td className="align-middle"><i className="icofont-close text-danger"></i></td>
+                                        </tr>
+                                    )
+                                }
                                 </tbody>
                             </table>
                         </div>

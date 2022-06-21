@@ -1,7 +1,25 @@
-
 import imgBlog from '../../assets/img/blog2.jpg'
+import {useEffect, useState} from "react";
 
 function ListaBlogs() {
+
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        mostrarBlogs()
+    }, []);
+
+    const mostrarBlogs = () => {
+        let url = "http://api-felipe.test/api/blogs"
+        fetch(url)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setBlogs(data)
+            })
+    }
+
     return (
         <>
             <div className="blog_part">
@@ -74,28 +92,35 @@ function ListaBlogs() {
                         </div>
                         <div className="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8">
                             <div className="row">
-                                <div className="col-xs-12 col-sm-12 col-md-12 mt-4">
-                                    <div className="blog">
-                                        <div className="blog_img">
-                                            <img src={imgBlog} className="w-100 img-fluid" alt="jpgimg"/>
-                                        </div>
-                                        <div className="blog_publish d-flex justify-content-between pt-4">
-                                            <div className="date">
-                                                <span><i className="icofont-ui-calendar"></i> 20 April 2020</span>
+                                {
+                                    blogs.map(blog =>
+                                        <div className="col-xs-12 col-sm-12 col-md-12 mt-4">
+                                            <div className="blog">
+                                                <div className="blog_img">
+                                                    <img src={blog.image} className="w-100 img-fluid" alt="jpgimg"/>
+                                                </div>
+                                                <div className="blog_publish d-flex justify-content-between pt-4">
+                                                    <div className="date">
+                                                        <span><i className="icofont-ui-calendar"></i> { blog.created_at }</span>
+                                                    </div>
+                                                    <div className="date">
+                                                        <span><i className="icofont-ui-theme"></i> { blog.categoria.descripcion }</span>
+                                                    </div>
+                                                    <div className="fav_icon">
+                                                        <span><i className="icofont-ui-love"></i> { blog.likes }</span>
+                                                        <span><i className="icofont-speech-comments"></i> { blog.comentarios.length }</span>
+                                                    </div>
+                                                </div>
+                                                <div className="blog_title text-uppercase">
+                                                    <h4><a href="blogdetails.html">{ blog.titulo }</a></h4>
+                                                    <a href="blogdetails.html" className="underline">Ver más</a>
+                                                </div>
                                             </div>
-                                            <div className="fav_icon">
-                                                <span><i className="icofont-ui-love"></i> 568</span>
-                                                <span><i className="icofont-speech-comments"></i> 986</span>
-                                            </div>
                                         </div>
-                                        <div className="blog_title text-uppercase">
-                                            <h4><a href="blogdetails.html">Strawberries are low-growing herbaceous
-                                                plants with a fibrous root system and a crown from which arise basal
-                                                leaves.</a></h4>
-                                            <a href="blogdetails.html" className="underline">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                    )
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -104,4 +129,5 @@ function ListaBlogs() {
         </>
     )
 }
+
 export default ListaBlogs
