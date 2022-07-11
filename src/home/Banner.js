@@ -11,11 +11,10 @@ function Banner() {
                     <div className="row banner-slider">
                         <div className="col-md-12">
                             <div className="banner-content">
-                                <h1>100% <span>Organic</span></h1>
-                                <h3>Fresh & Natural Farm Food</h3>
-                                <p>The readable content of a page when looking at its layout point of using of letters,
-                                    as opposed.</p>
-                                <a href="#" className="btn ">ALL PRoducts <i className="icofont-bubble-right"></i></a>
+                                <h1>100% <span>Orgánico</span></h1>
+                                <h3>Alimentos de Granja Frescos y Naturales</h3>
+                                <p>¡Tenemos los mejores alimentos orgánicos para ti!</p>
+                                <a href="#" className="btn ">Todos los productos<i className="icofont-bubble-right"></i></a>
                             </div>
                         </div>
                     </div>

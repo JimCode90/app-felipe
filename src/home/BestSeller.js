@@ -1,5 +1,6 @@
 import imgProd1 from '../assets/img/productos/1.jpg'
 import {useEffect, useState} from "react";
+import {URL_API} from "../utils";
 
 function BestSeller() {
 
@@ -9,7 +10,7 @@ function BestSeller() {
     }, []);
 
     const mostrarProductos = () => {
-        let url = "http://api-felipe.test/api/productos"
+        let url = `${URL_API}/api/productos`
         fetch(url)
             .then(response => {
                 return response.json()
@@ -24,9 +25,8 @@ function BestSeller() {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 text-center">
-                            <h3 className="section-title">Our Best Seller Product</h3>
-                            <p className="section-subtitle">The passage experienced a surge in popularity during the
-                                1960s when again during the 90s as desktop publishers</p>
+                            <h3 className="section-title">Nuestro Producto Más Vendido</h3>
+                            <p className="section-subtitle">El Pasaje Experimentó Un Aumento De Popularidad Durante La Década De 1960 Cuando Nuevamente Durante La Década De 1990 Como Editores De Escritorio.</p>
                         </div>
                     </div>
 

@@ -7,8 +7,8 @@ function ContactNow() {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 text-center">
-                            <h3 className="contact-quote">If you Need Natural And Fresh Organic Fruits!</h3>
-                            <a href="#" className="btn">Contact Now <i className="icofont-bubble-right"></i></a>
+                            <h3 className="contact-quote">Si Necesitas Frutas Orgánicas Naturales Y Frescas!</h3>
+                            <a href="#" className="btn">Contacta Ahora <i className="icofont-bubble-right"></i></a>
                         </div>
                     </div>
                 </div>

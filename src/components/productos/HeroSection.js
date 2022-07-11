@@ -1,7 +1,7 @@
 
 import imgBanner from '../../assets/img/product_hero_section_bg.jpg'
 
-function HeroSection() {
+function HeroSection({ title }) {
     return (
         <>
             <div className="hero_section" style={{
@@ -12,8 +12,8 @@ function HeroSection() {
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div className="herosection_content">
-                                <h2>Cart Overview</h2>
-                                <a href="index.html" className="btn border-radius-0 border-transparent">Home - Pages</a>
+                                <h2>{ title }</h2>
+                                <a href="index.html" className="btn border-radius-0 border-transparent">Inicio - Productos</a>
                             </div>
                         </div>
                     </div>

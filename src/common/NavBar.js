@@ -23,10 +23,13 @@ function NavBar() {
                     <li className="nav-item active">
                         <Link className="nav-link" to="/blogs">BLOGS</Link>
                     </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link" to="/mantenimiento">MANTENIMIENTO</Link>
+                    </li>
                 </ul>
                 <div className="header-content">
                     <div className="header_contact text-right">
-                        <span>Call Us!</span>
+                        <span>¡Llamanos!</span>
                         <span className="phone_no">+00 569 846 348</span>
                     </div>
                     <div className="header_icon">

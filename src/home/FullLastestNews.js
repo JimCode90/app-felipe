@@ -10,9 +10,8 @@ function FullLastestNews() {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 text-center">
-                            <h3 className="section-title">Latest News</h3>
-                            <p className="section-subtitle">The passage experienced a surge in popularity during the
-                                1960s when again during the 90s as desktop publishers</p>
+                            <h3 className="section-title">Últimas Noticias</h3>
+                            <p className="section-subtitle">El Pasaje Experimentó Un Aumento De Popularidad Durante La Década De 1960 Cuando Nuevamente Durante La Década De 1990 Como Editores De Escritorio.</p>
                         </div>
                     </div>
 
@@ -25,13 +24,12 @@ function FullLastestNews() {
 
                                 <div className="news-content">
                                     <div className="date-react">
-                                        <span className="date">16 January’20</span>
+                                        <span className="date">16 enero 2022</span>
                                         <span className="react"><i className="icofont-ui-love"></i> 56</span>
                                         <span className="react"><i className="icofont-speech-comments"></i> 98</span>
                                     </div>
                                     <div className="news-title">
-                                        <a href="blogdetails.html"><h4>The passage experienced a popularity during the
-                                            used it on their dry-transfer sheets.</h4></a>
+                                        <a href="blogdetails.html"><h4>El pasaje experimentó una popularidad durante el uso en sus hojas de transferencia seca.</h4></a>
                                     </div>
                                 </div>
                             </div>
@@ -45,12 +43,12 @@ function FullLastestNews() {
 
                                 <div className="news-content">
                                     <div className="date-react">
-                                        <span className="date">16 January’20</span>
+                                        <span className="date">16 enero 2022</span>
                                         <span className="react"><i className="icofont-ui-love"></i> 56</span>
                                         <span className="react"><i className="icofont-speech-comments"></i> 98</span>
                                     </div>
                                     <div className="news-title">
-                                        <a href="blogdetails.html"><h4>The passage popularity dry transfer sheets.</h4>
+                                        <a href="blogdetails.html"><h4>Las hojas de transferencia secas de popularidad de pasaje.</h4>
                                         </a>
                                     </div>
                                 </div>
@@ -63,12 +61,12 @@ function FullLastestNews() {
 
                                 <div className="news-content">
                                     <div className="date-react">
-                                        <span className="date">16 January’20</span>
+                                        <span className="date">16 enero 2022</span>
                                         <span className="react"><i className="icofont-ui-love"></i> 56</span>
                                         <span className="react"><i className="icofont-speech-comments"></i> 98</span>
                                     </div>
                                     <div className="news-title">
-                                        <a href="blogdetails.html"><h4>The passage popularity dry transfer sheets.</h4>
+                                        <a href="blogdetails.html"><h4>Las hojas de transferencia secas de popularidad de pasaje.</h4>
                                         </a>
                                     </div>
                                 </div>
