@@ -1,5 +1,6 @@
 import imgBlog from '../../assets/img/blog2.jpg'
 import { useEffect, useState } from "react";
+import {URL_API} from "../../utils";
 
 function ListaBlogs() {
 
@@ -10,7 +11,7 @@ function ListaBlogs() {
     }, []);
 
     const mostrarBlogs = () => {
-        let url = "http://ep4-api.test/api/blogs"
+        let url = `${URL_API}/api/blogs`
         fetch(url)
             .then(response => {
                 return response.json()

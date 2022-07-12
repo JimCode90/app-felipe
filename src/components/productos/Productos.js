@@ -1,12 +1,12 @@
 import HeroSection from "./HeroSection";
-import ListaProductos from "../mantenimiento/ListaProductos";
+import CatalogoProductos from "./CatalogoProductos";
 
 
 function Productos() {
     return (
         <>
             <HeroSection title="PRODUCTOS" />
-
+            <CatalogoProductos />
         </>
     )
 }

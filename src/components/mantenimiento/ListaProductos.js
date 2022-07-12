@@ -46,6 +46,7 @@ function ListaProductos() {
         let rutaServicio = `${URL_API}/api/productos`
         document.querySelector("#insertModal .btn-close").click();
         const formData = new FormData();
+        formData.append("categoria_id", categoria)
         formData.append("nombre", nombre);
         formData.append("precio", precio);
         formData.append("cantidad", cantidad);
@@ -60,9 +61,78 @@ function ListaProductos() {
             })
             .then((data) => {
                 //console.log(data);
+                limpiarCampos()
                 alert("Se ha registrado el producto " + nombre + " correctamente");
                 mostrarProductos();
             })
+    }
+
+    const actualizarProducto = (event) => {
+        event.preventDefault();
+        let rutaServicio = `${URL_API}/api/productos-actualizar`
+        document.querySelector("#actualizarModal .btn-close").click();
+        const formData = new FormData();
+        formData.append('id', idProducto)
+        formData.append("categoria_id", categoria)
+        formData.append("nombre", nombre);
+        formData.append("precio", precio);
+        formData.append("cantidad", cantidad);
+        formData.append("kilos", kilos);
+
+        fetch(rutaServicio, {
+            method: 'POST',
+            body: formData
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                limpiarCampos()
+                alert("Se ha actualizado el producto " + nombre + " correctamente");
+                mostrarProductos();
+            })
+    }
+
+    const eliminarProducto = (event) => {
+        event.preventDefault();
+        let rutaServicio = `${URL_API}/api/productos-eliminar`
+        document.querySelector("#eliminarModal .btn-close").click();
+        const formData = new FormData();
+        formData.append('id', idProducto)
+        fetch(rutaServicio, {
+            method: 'POST',
+            body: formData
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                limpiarCampos()
+                alert("Se ha eliminado el producto " + nombre + " correctamente");
+                mostrarProductos();
+            })
+    }
+
+
+    const llenarDatos = (item) => {
+        setIdProducto(item.id);
+        setCategoria(item.categoria_id)
+        setNombre(item.nombre);
+        setCantidad(item.cantidad);
+        setPrecio(item.precio);
+        setKilos(item.kilos)
+    }
+
+    const limpiarCampos = () => {
+        setIdProducto('')
+        setCategoria('')
+        setNombre('')
+        setPrecio('')
+        setCantidad('')
+        setKilos('')
+
     }
 
     const templateFormulario = () => {
@@ -73,7 +143,7 @@ function ListaProductos() {
                     <label htmlFor="categoria">Categoria</label>
                     <select
                         id="categoria"
-                        className="form-control select-categoria"
+                        className="input-form"
                         value={categoria}
                         onChange={(e) => setCategoria(e.target.value)}
                     >
@@ -90,7 +160,7 @@ function ListaProductos() {
                     <input
                         id="nombre"
                         type="text"
-                        className='form-control'
+                        className='input-form'
                         placeholder='Nombre'
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
@@ -101,7 +171,7 @@ function ListaProductos() {
                     <input
                         id="precio"
                         type="text"
-                        className='form-control'
+                        className='input-form'
                         placeholder='Precio'
                         value={precio}
                         onChange={(e) => setPrecio(e.target.value)}
@@ -111,8 +181,8 @@ function ListaProductos() {
                     <label htmlFor="cantidad">Cantidad</label>
                     <input
                         id="cantidad"
-                        type="text"
-                        className='form-control'
+                        type="number"
+                        className='input-form'
                         placeholder='Cantidad'
                         value={cantidad}
                         onChange={(e) => setCantidad(e.target.value)}
@@ -122,8 +192,8 @@ function ListaProductos() {
                     <label htmlFor="kilos">Kilos</label>
                     <input
                         id="kilos"
-                        type="text"
-                        className='form-control'
+                        type="number"
+                        className='input-form'
                         placeholder='Kilos'
                         value={kilos}
                         onChange={(e) => setKilos(e.target.value)}
@@ -141,7 +211,7 @@ function ListaProductos() {
                     <form onSubmit={(e) => registrarProducto(e)}>
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Registrar Prodcutos</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Registrar Producto</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -150,8 +220,62 @@ function ListaProductos() {
                                 { templateFormulario() }
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-secondary btn-close" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" className="btn btn-primary">Registrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+
+    const mostrarActualizarModal = () => {
+        return (
+            <div className="modal fade" id="actualizarModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog">
+                    <form onSubmit={(event) => actualizarProducto(event)}>
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Actualizar Producto</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                { templateFormulario() }
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary btn-close" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" className="btn btn-primary">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+
+    const mostrarEliminarModal = () => {
+        return (
+            <div className="modal fade" id="eliminarModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog">
+                    <form onSubmit={(event) => eliminarProducto(event)}>
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                Estas a punto de eliminar el producto { nombre }. ¿Desea continuar?
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary btn-close" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" className="btn btn-primary">Eliminar</button>
                             </div>
                         </div>
                     </form>
@@ -216,8 +340,16 @@ function ListaProductos() {
                                             </td>
                                             <td className="align-middle">{producto.categoria.descripcion}</td>
                                             <td className="align-middle">
-                                                <i className="icofont-edit text-warning m-2"/>
-                                                <i className="icofont-close text-danger m-2"/>
+                                                <i
+                                                    className="icofont-edit text-warning m-2"
+                                                    data-toggle="modal"
+                                                    data-target="#actualizarModal"
+                                                    onClick={(e) => llenarDatos(producto)} />
+                                                <i
+                                                    className="icofont-close text-danger m-2"
+                                                    data-toggle="modal"
+                                                    data-target="#eliminarModal"
+                                                    onClick={(e) => llenarDatos(producto)}/>
                                             </td>
                                         </tr>
                                     )
@@ -229,6 +361,8 @@ function ListaProductos() {
                 </div>
             </div>
             {mostrarInsertModal()}
+            {mostrarActualizarModal()}
+            {mostrarEliminarModal()}
         </>
     )
 }
